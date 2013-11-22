@@ -1,0 +1,28 @@
+Data:
+View (Pose + Points/Cells + getUtil?)
+Candidates = ViewSet
+Parittion = Part(ViewSet) -> check impl
+
+Processors:
+PoseChekcer -> API check
+ViewPoseEvaluator -> Pose/View + Environment + SearchSet -> View
+Paritioner
+
+Pkgs
+1) CandidateGen:
+Environment (= OccupancyOcTree)
+SearchSet = KeySet
+PoseChecker - isValidPose
+--> Candidates -- Start with this. Check APIs from paper desc. Goal ViewEvaluations -> can be selected later (i.e. choose best, N best, all better eps, etc.)
+- Vis APIs maybe via accessors, all via markers? drawable(), getMarker or similar.
+
+Parts (check old code):
+- Clustering (plugins, clustermulti/single) ("FrontierVoids"/TargetClusters) - if nec
+- For clusters: UVs
+- UtilityWeights + PoseCheckerPruning!!!
+-> Clusters + weights --> SearchAlgos (Compute Views + Evaluations - stop at algo-defined)
+-> Result processor: Best, N best, etc.
+
+2) Paritioning
+
+3) Search/NBV/Coverage
